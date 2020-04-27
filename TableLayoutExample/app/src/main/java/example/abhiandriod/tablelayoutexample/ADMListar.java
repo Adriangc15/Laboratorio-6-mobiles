@@ -3,11 +3,11 @@ package example.abhiandriod.tablelayoutexample;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class activity_create_account extends AppCompatActivity {
+public class ADMListar extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_account);
+        setContentView(R.layout.activity_adm_listar);
     }
 }
