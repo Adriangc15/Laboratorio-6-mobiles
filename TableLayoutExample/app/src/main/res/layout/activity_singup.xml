@@ -98,7 +98,7 @@
                             android:layout_weight="50"
                             android:ems="10"
                             android:inputType="textPersonName"
-                            android:text="Nombre" />
+                            android:hint="Nombre" />
 
                         <EditText
                             android:id="@+id/idApellido"
@@ -107,7 +107,7 @@
                             android:layout_weight="50"
                             android:ems="10"
                             android:inputType="textPersonName"
-                            android:text="Apellido" />
+                            android:hint="Apellido" />
 
                     </LinearLayout>
 
@@ -144,7 +144,7 @@
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:inputType="textPersonName"
-                            android:text="Direccion " />
+                            android:hint="Direccion " />
 
                         <EditText
                             android:id="@+id/idSegundaDireccion"
@@ -152,7 +152,7 @@
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:inputType="textPersonName"
-                            android:text="Segunda Direccion" />
+                            android:hint="Segunda Direccion" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -166,7 +166,7 @@
                                 android:layout_weight="1"
                                 android:ems="10"
                                 android:inputType="textPersonName"
-                                android:text="Ciudad" />
+                                android:hint="Ciudad" />
 
                             <EditText
                                 android:id="@+id/idProvincia"
@@ -175,7 +175,7 @@
                                 android:layout_weight="1"
                                 android:ems="10"
                                 android:inputType="textPersonName"
-                                android:text="Provincia" />
+                                android:hint="Provincia" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -190,7 +190,7 @@
                                 android:layout_weight="1"
                                 android:ems="10"
                                 android:inputType="textPostalAddress"
-                                android:text="ZIP " />
+                                android:hint="ZIP " />
 
                             <Spinner
                                 android:id="@+id/idPais"
@@ -255,7 +255,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Numero de Telefono" />
+                            android:hint="Numero de Telefono" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -271,7 +271,7 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="textPersonName"
-                            android:text="Codigo de area" />
+                            android:hint="Codigo de area" />
 
                         <EditText
                             android:id="@+id/idTelefono"
@@ -280,7 +280,7 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="phone"
-                            android:text="Telefono" />
+                            android:hint="Telefono" />
 
                     </LinearLayout>
                 </TableRow>
