@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import example.abhiandriod.tablelayoutexample.Model.Model;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private Model model;
     private EditText userName;
     private EditText password;
+    private TextView signUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +29,14 @@ public class MainActivity extends AppCompatActivity {
         Button loginButton = (Button) findViewById(R.id.loginBtn);
         this.userName = (EditText) findViewById(R.id.userName);
         this.password = (EditText) findViewById(R.id.password);
+        this.signUp = (TextView) findViewById(R.id.signUp);
 
         // initiate the model
-        this.model = new Model();
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+            this.model = (Model) bundle.getSerializable("model");
+        if(this.model == null)
+            this.model = new Model();
 
         // perform click event on the button
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +58,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, activity_create_account.class);
+                intent.putExtra("model", model);
+                MainActivity.this.startActivity(intent);
+            }
+        });
+
+
     }
 
 
