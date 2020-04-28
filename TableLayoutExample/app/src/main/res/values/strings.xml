@@ -19,4 +19,18 @@
     <string name="sexo">Sexo</string>
     <string name="hombre">Hombre</string>
     <string name="mujer">Mujer</string>
+
+    <string-array name="posicion">
+        <item>Seleccione</item>
+        <item>Programador</item>
+        <item>Administrador</item>
+        <item>Contador</item>
+    </string-array>
+
+    <string-array name="pais">
+        <item>Seleccione</item>
+        <item>Costa Rica</item>
+        <item>Panama</item>
+        <item>Nicaragua</item>
+    </string-array>
 </resources>
