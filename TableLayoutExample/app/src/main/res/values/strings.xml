@@ -33,4 +33,7 @@
         <item>Panama</item>
         <item>Nicaragua</item>
     </string-array>
+
+    <string name="formato_fecha">dd/mm/yyyy</string>
+
 </resources>
