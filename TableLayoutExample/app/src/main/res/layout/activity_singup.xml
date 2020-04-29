@@ -358,12 +358,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="9"
-                            app:srcCompat="@drawable/calendario"
-                            app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintLeft_toRightOf="@+id/et_mostrar_fecha_picker"
-                            app:layout_constraintHorizontal_bias="0.505"
+                            app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textFecha"
-                            tools:ignore="ContentDescription"/>
+                            app:srcCompat="@drawable/calendario"
+                            tools:ignore="ContentDescription"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentLeft="true"
+                            android:scaleType="fitCenter"/>
 
                     </LinearLayout>
 

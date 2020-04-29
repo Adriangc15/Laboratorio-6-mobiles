@@ -1,9 +1,11 @@
 package example.abhiandriod.tablelayoutexample;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -14,6 +16,8 @@ public class activity_singup extends AppCompatActivity implements View.OnClickLi
 
     public EditText fecha;
     public ImageButton imgFecha;
+
+    public Button guardar;
 
 
     private static final String CERO = "0";
@@ -33,6 +37,15 @@ public class activity_singup extends AppCompatActivity implements View.OnClickLi
         fecha = (EditText) findViewById(R.id.idFecha);
         imgFecha = (ImageButton) findViewById(R.id.idObtenerFecha);
         imgFecha.setOnClickListener(this);
+
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity_singup.this, ADMListar.class);
+
+                activity_singup.this.startActivity(intent);
+            }
+        });
 
     }
 
