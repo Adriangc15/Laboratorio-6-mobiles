@@ -16,6 +16,7 @@ public class Formulario implements Serializable {
     private int numero;
     private String fecha;
     private String formID;
+    private String puesto;
 
     public Formulario() {
         this.nombre = "";
@@ -30,11 +31,12 @@ public class Formulario implements Serializable {
         this.numero = 0;
         this.fecha = "";
         this.formID = "";
+        this.puesto = "";
     }
 
     public Formulario(String nombre, String apellido, String direccion, String segundaDireccin,
                       String provincia, String ciudad, String zip, String pais, String codigoArea,
-                      int numero, String fecha, String id) {
+                      int numero, String fecha, String id, String puesto) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
@@ -47,6 +49,15 @@ public class Formulario implements Serializable {
         this.numero = numero;
         this.fecha = fecha;
         this.formID = id;
+        this.puesto = puesto;
+    }
+
+    public String getFormID() {
+        return formID;
+    }
+
+    public String getPuesto() {
+        return puesto;
     }
 
     public String getId() {
@@ -95,6 +106,14 @@ public class Formulario implements Serializable {
 
     public String getFecha() {
         return fecha;
+    }
+
+    public void setFormID(String formID) {
+        this.formID = formID;
+    }
+
+    public void setPuesto(String puesto) {
+        this.puesto = puesto;
     }
 
     public void setId(String id) {
