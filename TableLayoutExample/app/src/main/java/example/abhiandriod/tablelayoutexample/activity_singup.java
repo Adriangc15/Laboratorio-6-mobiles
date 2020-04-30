@@ -4,21 +4,26 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Random;
+
+import example.abhiandriod.tablelayoutexample.Model.Formulario;
+import example.abhiandriod.tablelayoutexample.Model.Model;
 
 public class activity_singup extends AppCompatActivity implements View.OnClickListener {
 
     public EditText fecha;
     public ImageButton imgFecha;
-
+    private Model model;
     public Button guardar;
 
 
@@ -52,6 +57,13 @@ public class activity_singup extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_singup);
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+            this.model = (Model) bundle.getSerializable("model");
+
+        if (this.model == null)
+            this.model = new Model();
+
         nombre = (EditText)findViewById(R.id.IdNombre);
         apellido  = (EditText) findViewById(R.id.idApellido);
         direccion = (EditText) findViewById(R.id.idDireccion);
@@ -73,6 +85,7 @@ public class activity_singup extends AppCompatActivity implements View.OnClickLi
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int Vnumero =0;
                 String Vnombre = nombre.getText().toString();
                 String Vapellido = apellido.getText().toString();
                 String Vdireccion = direccion.getText().toString();
@@ -82,10 +95,22 @@ public class activity_singup extends AppCompatActivity implements View.OnClickLi
                 String Vzip = zip.getText().toString();
                 String Vpais = pais.getSelectedItem().toString();
                 String VcodigoArea = codigoArea.getText().toString();
-                int Vnumero = Integer.parseInt(telefono.getText().toString()) ;
+                Vnumero = Integer.parseInt(telefono.getText().toString()) ;
                 String Vfecha = fecha.getText().toString();
                 String VformID = String.valueOf(new Random());
                 String Vpuesto = puesto.getSelectedItem().toString();
+                String Vcorreo = correo.getText().toString();
+
+
+                switch (validateForm(Vnombre,Vapellido,Vdireccion,VsegundaDireccin,Vprovincia,Vciudad,Vzip,Vpais,VcodigoArea,Vnumero,
+                        Vfecha,VformID,Vpuesto,Vcorreo)) {
+                    case 0:
+                        Toast.makeText(activity_singup.this, "Todos los campos del formulario son necesarios.", Toast.LENGTH_LONG).show();
+                    case 1:
+                        Formulario form = new Formulario(Vnombre,Vapellido,Vdireccion,VsegundaDireccin,Vprovincia,Vciudad,Vzip,Vpais,VcodigoArea,Vnumero,
+                                Vfecha,VformID,Vpuesto,Vcorreo);
+                        model.addForm(form);
+                }
 
                 Intent intent = new Intent(activity_singup.this, ADMListar.class);
                 activity_singup.this.startActivity(intent);
@@ -126,5 +151,17 @@ public class activity_singup extends AppCompatActivity implements View.OnClickLi
         //Muestro el widget
         recogerFecha.show();
 
+    }
+
+
+    public int validateForm(String nombre, String apellido, String direccion, String segundaDireccin,
+                            String provincia, String ciudad, String zip, String pais, String codigoArea,
+                            int numero, String fecha, String id, String puesto, String correo){
+        if (nombre.isEmpty() || apellido.isEmpty() || direccion.isEmpty()||segundaDireccin.isEmpty()||
+        provincia.isEmpty()||ciudad.isEmpty()||zip.isEmpty()||pais.isEmpty()||codigoArea.isEmpty()||
+        numero==0||fecha.isEmpty()||id.isEmpty()||puesto.isEmpty()||correo.isEmpty()){
+            return 1;
+        }
+        return 0;
     }
 }
