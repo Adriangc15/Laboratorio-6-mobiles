@@ -17,6 +17,7 @@ public class Model implements Serializable {
     private void initModel(){
         this.loggedUser = null;
         this.listaUsuarios = new ArrayList<User>();
+        this.listaFormularios = new ArrayList<Formulario>();
         this.listaUsuarios.add(new User("1", "Adrian Ch", "@adrian.com", "adrian123", 1));
         this.listaUsuarios.add(new User("2", "Antonio Q", "@antonio.com", "antonio123", 1));
         this.listaUsuarios.add(new User("3", "Admin", "@admin.com", "admin", 0));
@@ -31,8 +32,9 @@ public class Model implements Serializable {
 
     public ArrayList<Formulario> getListaFormularios() {return listaFormularios;}
 
-    public Formulario getListaUsuario (int index){return listaFormularios.get(index);}
-    public User getListaUsuariosIndex(int index) {
+    public Formulario getFormularioIndex (int index){return listaFormularios.get(index);}
+
+    public User getUsuariosIndex(int index) {
         return listaUsuarios.get(index);
     }
 
@@ -44,6 +46,7 @@ public class Model implements Serializable {
         }
         return null;
     }
+
     public User getUsuarioById(String userId) {
         for (User user:this.listaUsuarios){
             if (user.getUserId().toLowerCase().equals(userId.toLowerCase()))
@@ -51,7 +54,6 @@ public class Model implements Serializable {
         }
         return null;
     }
-
 
     public boolean addForm(Formulario form){
         for (Formulario f : this.listaFormularios){
