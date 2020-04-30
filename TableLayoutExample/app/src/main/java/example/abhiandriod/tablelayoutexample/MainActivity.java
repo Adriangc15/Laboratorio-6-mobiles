@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText userName;
     private EditText password;
     private TextView signUp;
+    private TextView cambiar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         this.userName = (EditText) findViewById(R.id.userName);
         this.password = (EditText) findViewById(R.id.password);
         this.signUp = (TextView) findViewById(R.id.signUp);
+        this.cambiar = (TextView) findViewById(R.id.cambiar);
 
         // initiate the model
         Bundle bundle = getIntent().getExtras();
@@ -66,6 +68,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        cambiar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CambiarContracena.class);
+                intent.putExtra("model", model);
+                MainActivity.this.startActivity(intent);
+            }
+        });
 
     }
 

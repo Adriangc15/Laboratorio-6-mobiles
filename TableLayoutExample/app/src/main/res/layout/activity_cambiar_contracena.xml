@@ -19,6 +19,7 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:text="Cambiar Contracena" />
         </TableRow>
 
@@ -55,7 +56,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="correo" />
+                    android:hint="Correo" />
             </LinearLayout>
         </TableRow>
 
@@ -174,7 +175,7 @@
                 android:layout_weight="100">
 
                 <Button
-                    android:id="@+id/button4"
+                    android:id="@+id/idCrear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
