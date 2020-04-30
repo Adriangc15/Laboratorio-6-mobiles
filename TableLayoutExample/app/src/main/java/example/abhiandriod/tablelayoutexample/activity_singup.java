@@ -101,6 +101,18 @@ public class activity_singup extends AppCompatActivity implements View.OnClickLi
                 String Vpuesto = puesto.getSelectedItem().toString();
                 String Vcorreo = correo.getText().toString();
 
+
+                switch (validateForm(Vnombre,Vapellido,Vdireccion,VsegundaDireccin,Vprovincia,Vciudad,Vzip,
+                        Vpais,VcodigoArea,Vnumero,Vfecha,VformID,Vpuesto,Vcorreo)){
+                    case 0:
+                        Formulario form = new Formulario(Vnombre,Vapellido,Vdireccion,VsegundaDireccin,Vprovincia,Vciudad,Vzip,
+                                Vpais,VcodigoArea,Vnumero,Vfecha,VformID,Vpuesto,Vcorreo);
+                        model.addForm(form);
+                        break;
+                    case 1:
+                        Toast.makeText(activity_singup.this, "Complete todos los campos del formulario.", Toast.LENGTH_LONG).show();
+                        break;
+                }
                 Intent intent = new Intent(activity_singup.this, ADMListar.class);
                 intent.putExtra("model", model);
                 activity_singup.this.startActivity(intent);
