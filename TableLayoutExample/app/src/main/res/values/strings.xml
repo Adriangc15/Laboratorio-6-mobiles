@@ -20,7 +20,7 @@
     <string name="hombre">Hombre</string>
     <string name="mujer">Mujer</string>
     <string name="list_delete_text">Eliminar</string>
-    <string name="list_edit_text">Editar</string>
+    <string name="list_view_text">Ver</string>
     <string name="main_logout_activity">Cerrar Sesión</string>
     <string name="menusearch_search_action">Buscar</string>
 

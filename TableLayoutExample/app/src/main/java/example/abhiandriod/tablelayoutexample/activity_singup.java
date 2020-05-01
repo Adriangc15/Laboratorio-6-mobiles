@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
@@ -50,6 +52,8 @@ public class activity_singup extends AppCompatActivity implements View.OnClickLi
     private EditText codigoArea;
     private EditText telefono;
     private Spinner puesto;
+    private Boolean isEditable;
+    private Formulario viewForm;
 
 
     @Override
@@ -59,7 +63,13 @@ public class activity_singup extends AppCompatActivity implements View.OnClickLi
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null)
+        {
             this.model = (Model) bundle.getSerializable("model");
+            this.isEditable = (Boolean) bundle.getBoolean("editable");
+            if (!this.isEditable){
+                this.viewForm = (Formulario) bundle.getSerializable("formulario");
+            }
+        }
 
         if (this.model == null)
             this.model = new Model();
@@ -80,44 +90,76 @@ public class activity_singup extends AppCompatActivity implements View.OnClickLi
         fecha = (EditText) findViewById(R.id.idFecha);
         imgFecha = (ImageButton) findViewById(R.id.idObtenerFecha);
         imgFecha.setOnClickListener(this);
-
         guardar = (Button) findViewById(R.id.guardar);
-        guardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int Vnumero =0;
-                String Vnombre = nombre.getText().toString();
-                String Vapellido = apellido.getText().toString();
-                String Vdireccion = direccion.getText().toString();
-                String VsegundaDireccin = segundaDireccion.getText().toString();
-                String Vprovincia = provincia.getText().toString();
-                String Vciudad = ciudad.getText().toString();
-                String Vzip = zip.getText().toString();
-                String Vpais = pais.getSelectedItem().toString();
-                String VcodigoArea = codigoArea.getText().toString();
-                Vnumero = Integer.parseInt(telefono.getText().toString()) ;
-                String Vfecha = fecha.getText().toString();
-                String VformID = String.valueOf(new Random());
-                String Vpuesto = puesto.getSelectedItem().toString();
-                String Vcorreo = correo.getText().toString();
+
+        if(this.isEditable){
+            guardar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int Vnumero =0;
+                    Random random = new Random();
+                    String Vnombre = nombre.getText().toString();
+                    String Vapellido = apellido.getText().toString();
+                    String Vdireccion = direccion.getText().toString();
+                    String VsegundaDireccin = segundaDireccion.getText().toString();
+                    String Vprovincia = provincia.getText().toString();
+                    String Vciudad = ciudad.getText().toString();
+                    String Vzip = zip.getText().toString();
+                    String Vpais = pais.getSelectedItem().toString();
+                    String VcodigoArea = codigoArea.getText().toString();
+                    Vnumero = Integer.parseInt(telefono.getText().toString()) ;
+                    String Vfecha = fecha.getText().toString();
+                    String VformID = String.valueOf(model.getListaFormularios().size() + 1);
+                    String Vpuesto = puesto.getSelectedItem().toString();
+                    String Vcorreo = correo.getText().toString();
 
 
-                switch (validateForm(Vnombre,Vapellido,Vdireccion,VsegundaDireccin,Vprovincia,Vciudad,Vzip,
-                        Vpais,VcodigoArea,Vnumero,Vfecha,VformID,Vpuesto,Vcorreo)){
-                    case 0:
-                        Formulario form = new Formulario(Vnombre,Vapellido,Vdireccion,VsegundaDireccin,Vprovincia,Vciudad,Vzip,
-                                Vpais,VcodigoArea,Vnumero,Vfecha,VformID,Vpuesto,Vcorreo);
-                        model.addForm(form);
-                        break;
-                    case 1:
-                        Toast.makeText(activity_singup.this, "Complete todos los campos del formulario.", Toast.LENGTH_LONG).show();
-                        break;
+
+                    switch (validateForm(Vnombre,Vapellido,Vdireccion,VsegundaDireccin,Vprovincia,Vciudad,Vzip,
+                            Vpais,VcodigoArea,Vnumero,Vfecha,VformID,Vpuesto,Vcorreo)){
+                        case 0:
+                            Formulario form = new Formulario(Vnombre,Vapellido,Vdireccion,VsegundaDireccin,Vprovincia,Vciudad,Vzip,
+                                    Vpais,VcodigoArea,Vnumero,Vfecha,VformID,Vpuesto,Vcorreo);
+                            model.addForm(form);
+                            model.setLoggedUser(null);
+                            Intent intent = new Intent(activity_singup.this, MainActivity.class);
+                            intent.putExtra("model", model);
+                            activity_singup.this.startActivity(intent);
+                            break;
+                        case 1:
+                            Toast.makeText(activity_singup.this, "Complete todos los campos del formulario.", Toast.LENGTH_LONG).show();
+                            break;
+                    }
                 }
-                Intent intent = new Intent(activity_singup.this, ADMListar.class);
-                intent.putExtra("model", model);
-                activity_singup.this.startActivity(intent);
-            }
-        });
+            });
+        }else{
+            guardar.setVisibility(Button.INVISIBLE);
+            this.nombre.setText(viewForm.getNombre());
+            this.apellido.setText(viewForm.getApellido());
+            this.direccion.setText(viewForm.getDireccion());
+            this.segundaDireccion.setText(viewForm.getSegundaDireccin());
+            this.provincia.setText(viewForm.getProvincia());
+            this.ciudad.setText(viewForm.getCiudad());
+            this.zip.setText(viewForm.getZip());
+
+            ArrayList<String> paises = new ArrayList<>();
+            paises.add(viewForm.getPais());
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, paises);
+            adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+            this.pais.setAdapter(adapter);
+
+            this.correo.setText(viewForm.getCorreo());
+            this.codigoArea.setText(viewForm.getCodigoArea());
+            this.telefono.setText(String.valueOf(viewForm.getNumero()));
+            this.fecha.setText(viewForm.getFecha());
+
+
+            ArrayList<String> puestos = new ArrayList<>();
+            puestos.add(viewForm.getPuesto());
+            adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,puestos);
+            adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+            this.puesto.setAdapter(adapter);
+        }
 
     }
 

@@ -58,15 +58,10 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
         if (viewHolder != null) {
             //check adapter
-            if (this.listener.getClass().getSimpleName().equals("AdmCarreraActivity")) {
-                backgroundViewEdit = ((FormAdapter.MyViewHolder) viewHolder).viewBackgroundEdit;
-                backgroundViewDelete = ((FormAdapter.MyViewHolder) viewHolder).viewBackgroundDelete;
-                foregroundView = ((FormAdapter.MyViewHolder) viewHolder).viewForeground;
-            }else if (this.listener.getClass().getSimpleName().equals("AdmCursoActivity")) {
-                backgroundViewEdit = ((FormAdapter.MyViewHolder) viewHolder).viewBackgroundEdit;
-                backgroundViewDelete = ((FormAdapter.MyViewHolder) viewHolder).viewBackgroundDelete;
-                foregroundView = ((FormAdapter.MyViewHolder) viewHolder).viewForeground;
-            }
+            backgroundViewEdit = ((FormAdapter.MyViewHolder) viewHolder).viewBackgroundEdit;
+            backgroundViewDelete = ((FormAdapter.MyViewHolder) viewHolder).viewBackgroundDelete;
+            foregroundView = ((FormAdapter.MyViewHolder) viewHolder).viewForeground;
+
             //Selected item
             if (actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
                 //fancy color picked

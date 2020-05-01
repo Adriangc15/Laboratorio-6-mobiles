@@ -54,10 +54,9 @@ public class ADMListar extends AppCompatActivity implements RecyclerItemTouchHel
 
         if (this.model == null)
             this.model = new Model();
-
+        this.formularioLista = model.getListaFormularios();
         mRecyclerView = findViewById(R.id.recycler_formulario);
-        formularioLista = new ArrayList<>();
-        mAdapter = new FormAdapter(formularioLista,this);
+        mAdapter = new FormAdapter(this.formularioLista,this);
         coordinatorLayout = findViewById(R.id.coordinator_layoutCa);
 
         whiteNotificationBar(mRecyclerView);
@@ -151,8 +150,8 @@ public class ADMListar extends AppCompatActivity implements RecyclerItemTouchHel
             Formulario aux = mAdapter.getSwipedItem(viewHolder.getAdapterPosition());
             //send data to Edit Activity
             Intent intent = new Intent(this, activity_singup.class);
-            intent.putExtra("editable", true);
-            intent.putExtra("Formulario", aux);
+            intent.putExtra("editable", false);
+            intent.putExtra("formulario", aux);
             mAdapter.notifyDataSetChanged(); //restart left swipe view
             startActivity(intent);
         }
@@ -165,7 +164,6 @@ public class ADMListar extends AppCompatActivity implements RecyclerItemTouchHel
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds carreraList to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_search, menu);
 
         // Associate searchable configuration with the SearchView   !IMPORTANT

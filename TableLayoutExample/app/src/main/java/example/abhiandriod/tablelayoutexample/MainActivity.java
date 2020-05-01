@@ -52,9 +52,19 @@ public class MainActivity extends AppCompatActivity {
                 if (model.getLoggedUser() == null){
                     Toast.makeText(MainActivity.this,"Usuario o contraseña invalido", Toast.LENGTH_LONG).show();
                 } else{
-                    Intent intent = new Intent(MainActivity.this, activity_singup.class);
-                    intent.putExtra("model", model);
-                    MainActivity.this.startActivity(intent);
+
+                    if (model.getLoggedUser().getPrivilege() == 0){
+                        Intent intent = new Intent(MainActivity.this, ADMListar.class);
+                        intent.putExtra("model", model);
+                        MainActivity.this.startActivity(intent);
+                    }
+                    else{
+                        Intent intent = new Intent(MainActivity.this, activity_singup.class);
+                        intent.putExtra("editable", true);
+                        intent.putExtra("model", model);
+                        MainActivity.this.startActivity(intent);
+                    }
+
                 }
             }
         });

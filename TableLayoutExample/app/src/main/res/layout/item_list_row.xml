@@ -19,7 +19,8 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@android:drawable/ic_menu_edit" />
+            android:background="#FFFFFF"
+            android:src="@android:drawable/ic_menu_view" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,7 +28,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/edit_icon"
-            android:text="@string/list_edit_text"
+            android:text="@string/list_view_text"
             android:textColor="#fff"
             android:textSize="13dp" />
     </RelativeLayout>

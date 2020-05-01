@@ -25,10 +25,9 @@ public class FormAdapter extends RecyclerView.Adapter<FormAdapter.MyViewHolder> 
     private FormularioAdapterListener listener;
     private Formulario deletedItem;
 
-    public FormAdapter(List<Formulario> formularioLista, ADMListar admListar) {
+    public FormAdapter(List<Formulario> formularioLista, FormularioAdapterListener listener) {
         this.formularioList = formularioLista;
         this.listener = listener;
-
         this.formulariolistFiltered= formularioList;
     }
 
