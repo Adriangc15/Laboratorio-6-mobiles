@@ -22,8 +22,8 @@ public class Model implements Serializable {
         this.listaUsuarios.add(new User("2", "Antonio Q", "@antonio.com", "antonio123", 1));
         this.listaUsuarios.add(new User("3", "Admin", "@admin.com", "admin", 0));
 
-        this.listaFormularios.add(new Formulario("Antonio","Quesada","Cabuyal","Frente a la plaza","Alajuela","Poas","20802","Costa Rica","+506",89792734,"4/27/2020","1","Programador"));
-        this.listaFormularios.add(new Formulario("Adrian","Chavarria","Centro","200 Sur","San Jose","Ciudad Colon","10202","Costa Rica","+506",88888888,"4/27/2020","2","Programador"));
+        this.listaFormularios.add(new Formulario("Antonio","Quesada","Cabuyal","Frente a la plaza","Alajuela","Poas","20802","Costa Rica","+506",89792734,"4/27/2020","1","Programador","@antonio.com"));
+        this.listaFormularios.add(new Formulario("Adrian","Chavarria","Centro","200 Sur","San Jose","Ciudad Colon","10202","Costa Rica","+506",88888888,"4/27/2020","2","Programador","@adrian.com"));
     }
 
     public ArrayList<User> getListaUsuarios() {

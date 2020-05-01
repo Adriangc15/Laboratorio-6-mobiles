@@ -46,11 +46,17 @@ public class ADMListar extends AppCompatActivity implements RecyclerItemTouchHel
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adm_listar);
         Toolbar toolbar = findViewById(R.id.toolbarCa);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+            this.model = (Model) bundle.getSerializable("model");
+
+        if (this.model == null)
+            this.model = new Model();
 
         mRecyclerView = findViewById(R.id.recycler_formulario);
         formularioLista = new ArrayList<>();
-        model = new Model();
         mAdapter = new FormAdapter(formularioLista,this);
         coordinatorLayout = findViewById(R.id.coordinator_layoutCa);
 
